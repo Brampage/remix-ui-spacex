@@ -1,0 +1,15 @@
+.mission {
+  display: flex;
+  background-color: hsl(240,67%,14%);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+}
+
+.mission__info {
+  padding: 0 0 0 32px;
+}
+
+.mission__button {
+  margin: 32px 0 0 0;
+}
