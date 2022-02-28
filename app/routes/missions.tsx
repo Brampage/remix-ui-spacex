@@ -1,4 +1,5 @@
-import {Form, Outlet, useLoaderData, useParams} from 'remix';
+import {Form, Outlet, useLoaderData, useOutletContext, useParams} from 'remix';
+import { Launch } from '~/types';
 
 import MissionListFeature, { links as MissionListFeatureStyles } from '../features/missions/mission-list.feature';
 
@@ -18,6 +19,10 @@ export async function loader({ request }) {
   }
 
   return res;
+}
+
+export function useLaunches() {
+  return useOutletContext<Launch>();
 }
 
 export default function Index() {
@@ -42,7 +47,7 @@ export default function Index() {
           <MissionListFeature missions={loaderData} />
         </div>
         <div className="page__detail">
-          {slug ? (<Outlet />) : (<div>
+          {slug ? (<Outlet context={loaderData.find((element) => element?.name === slug)} />) : (<div>
             <p>No mission selected</p>
           <img src="/assets/elon.jpg" alt="" />
 
