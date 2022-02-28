@@ -1,20 +1,7 @@
-import {useLoaderData} from 'remix';
-
-export async function loader({params}) {
-  const slug = params.slug;
-
-  let res = await fetch('https://api.spacexdata.com/v4/launches');
-  res = await res.json();
-
-  if (slug) {
-    return res.find((element) => element?.name === slug);
-  } else {
-    return null;
-  }
-}
+import { useLaunches } from '../missions';
 
 export default function MissionSlug() {
-  const loaderData = useLoaderData() || null;
+  const loaderData = useLaunches() || null;
 
   console.log(loaderData);
   return (
